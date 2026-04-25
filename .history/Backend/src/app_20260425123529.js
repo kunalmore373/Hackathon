@@ -12,6 +12,6 @@ app.use(cookieParser());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes); 
+app.use('/api/users', https://github.com/kunalmore373/Hackathon.git)
 
 module.exports = app;

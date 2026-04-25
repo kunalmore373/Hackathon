@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const authRoutes = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('');
 
 // Middleware
 app.use(express.json());

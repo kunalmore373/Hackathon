@@ -41,6 +41,7 @@ const updateUserProfile = async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 
+
 const getUserProfile = async (req, res) => {
     console.log("--- Controller Hit ---");
     console.log("req.user is:", req.user); // Is it undefined?

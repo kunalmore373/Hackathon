@@ -40,8 +40,11 @@ const updateUserProfile = async (req, res) => {
 // @desc    Get current user data (For dashboard initialization)
 // @route   GET /api/users/me
 // @access  Private
-
 const getUserProfile = async (req, res) => {
+    // // req.user is populated by our auth middleware
+    // res.json(req.user); 
+
+    const getUserProfile = async (req, res) => {
     console.log("--- Controller Hit ---");
     console.log("req.user is:", req.user); // Is it undefined?
     
@@ -51,6 +54,7 @@ const getUserProfile = async (req, res) => {
     }
     
     res.json(req.user); 
+};
 };
 
 module.exports = { updateUserProfile, getUserProfile };

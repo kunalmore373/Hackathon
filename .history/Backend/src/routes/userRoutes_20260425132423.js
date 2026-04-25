@@ -4,7 +4,7 @@ const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/authMiddleware');
 
 // Get user profile
-router.get( '/me' , authMiddleware.authMiddleware, userController.getUserProfile ) ;
+router.get( '/me' , authMiddleware, userController.getUserProfile ) ;
 
 // Update user profile (Onboarding 'Blueprint')
 router.patch( '/profile' , authMiddleware.authMiddleware , userController.updateUserProfile ) ;     
