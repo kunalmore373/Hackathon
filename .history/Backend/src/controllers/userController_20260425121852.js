@@ -1,0 +1,48 @@
+const User = require('../models/User');
+
+// @desc    Update user profile (Onboarding 'Blueprint')
+// @route   PATCH /api/users/profile
+// @access  Private
+const updateUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+
+        if (user) {
+            // Update the profile fields based on the incoming request body
+            // We use || to keep existing data if a field isn't provided in the request
+            user.profile.currentDegree = req.body.currentDegree || user.profile.currentDegree;
+            user.profile.targetDestinations = req.body.targetDestinations || user.profile.targetDestinations;
+            user.profile.annualBudget = req.body.annualBudget || user.profile.annualBudget;
+            
+            // Handle academic standing updates if provided
+            if (req.body.academicStanding) {
+                user.profile.academicStanding = {
+                    ...user.profile.academicStanding,
+                    ...req.body.academicStanding
+                };
+            }
+
+            const updatedUser = await user.save();
+
+            res.json({
+                _id: updatedUser._id,
+                email: updatedUser.email,
+                profile: updatedUser.profile
+            });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+// @desc    Get current user data (For dashboard initialization)
+// @route   GET /api/users/me
+// @access  Private
+const getUserProfile = async (req, res) => {
+    // req.user is populated by our auth middleware
+    res.json(req.user); 
+};
+
+module.exports = { updateUserProfile, getUserProfile };
