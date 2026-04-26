@@ -1,0 +1,1 @@
+const universityModel = require('../models/university.model');

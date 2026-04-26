@@ -1,0 +1,1 @@
+const university = require('../data/universities');

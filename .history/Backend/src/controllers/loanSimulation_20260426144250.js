@@ -1,0 +1,1 @@
+const loanApplication = require('../models/loanApplication.model');

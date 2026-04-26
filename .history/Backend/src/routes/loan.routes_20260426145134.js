@@ -1,0 +1,12 @@
+const loanSimulationController = require('../controllers/loanSimulationController');
+const express = require('express');
+const router = express.Router();
+const authMiddleware = require('../middleware/authMiddleware');
+
+// Create or update loan simulation for a university
+router.post('/:universityId', authMiddleware.authMiddleware, loanSimulationController.saveLoanSimulation); 
+
+// Get current loan simulation for the logged-in user
+router.get('/', authMiddleware.authMiddleware, loanSimulationController.getLoanSimulation);
+
+module.exports = router;
