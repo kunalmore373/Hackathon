@@ -23,9 +23,9 @@ const saveLoanSimulation = async (req, res) => {
             const newSimulation = await loanSimulation.create({
                 userId: req.user._id,
                 universityId: req.body.universityId,
-                loanAmount : req.body.loanAmount,
-                tenureYears: req.body.tenureYears,
-                moratoriumMonths: req.body.moratoriumMonths
+                loanAmount : ,
+                tenureYears,
+                moratoriumMonths
             });
             res.status(201).json({ message: 'Loan simulation saved successfully', simulation: newSimulation });
         }
