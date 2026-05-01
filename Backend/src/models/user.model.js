@@ -11,10 +11,14 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         },
+        avatar: {
+            type: String,
+            default: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'
+        },
         currentDegree: {
             type: String,
             enum: ['B.Tech', 'M.Tech', 'PhD', 'Bachelors', 'Masters', 'Other'],
-            required: true
+            required: false
         },
         academicStanding: {
             gpa: {
@@ -35,14 +39,29 @@ const userSchema = new mongoose.Schema({
         }],
         annualBudget: {
             type: Number,
-            required: true,
+            required: false,
             min: 0
         }
     },
     password: {
         type: String,
-        required: true
-    }
+        required: false // Optional for Google OAuth users
+    },
+    otp: {
+        type: String
+    },
+    otpExpires: {
+        type: Date
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true
+    },
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
